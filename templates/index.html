@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veemon AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #170551, #550e0e);
+    background-size: 400% 400%;
+    color: #1a1919;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+        
+        .container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(43, 43, 43, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+}
+        
+        .header {
+            padding: 20px;
+            background: #333;
+            border-bottom: 1px solid #711842;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .header span { color: #00d4aa; }
+        
+        #chatbox {
+            height: 60vh;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .msg {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user {
+            background: #515e5c;
+            color: #a4c9af;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .veemon {
+    background: #404040;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    overflow: hidden;
+    white-space: pre-wrap;
+    animation: typing 2s steps(40, end);
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+        .typing {
+    padding: 16px 20px !important;
+}
+
+.typing span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    background: #00d4aa;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing span:nth-child(1) { animation-delay: -0.32s; }
+.typing span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+    input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid transparent;
+    border-radius: 24px;
+    background: #3a3a3a;
+    color: #e0e0e0;
+    outline: none;
+    position: relative;
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+}
+
+input::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #00d4aa, #00b4d8, #9d4edd, #00d4aa);
+    background-size: 300% 100%;
+    animation: borderRun 3s linear infinite;
+}
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.3), 0 0 20px rgba(0, 212, 170, 0.4);
+    transform: scale(1.02);
+}
+
+@keyframes borderRun {
+    to { background-position: 300% 0; }
+}
+        
+        #pesan {
+            flex: 1;
+            padding: 14px 18px;
+            background: #404040;
+            border: none;
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+        }
+        
+        #pesan:focus { outline: 2px solid #00d4aa; }
+        
+        button {
+            padding: 14px 24px;
+            background: #00d4aa;
+            border: none;
+            border-radius: 12px;
+            color: #1a1a1a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        button:hover { background: #00b894; transform: scale(1.05); }
+        
+        #chatbox::-webkit-scrollbar { width: 6px; }
+        #chatbox::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Veemon <span>AI</span> - Teman Wildan</div>
+        <div id="chatbox"></div>
+        <div class="input-area">
+            <div class="input-wrapper">
+    <input type="text" id="pesan" placeholder="Ketik pesan ke Veemon..." onkeypress="if(event.key==='Enter') kirim()">
+</div>
+    </div>
+
+    <script>
+    const chatbox = document.getElementById('chatbox');
+    
+    function tambahPesan(teks, kelas) {
+        const div = document.createElement('div');
+        div.className = `msg ${kelas}`;
+        div.textContent = teks;
+        chatbox.appendChild(div);
+        chatbox.scrollTop = chatbox.scrollHeight;
+        return div; // biar bisa dihapus nanti
+    }
+    
+    function showTyping() {
+        const div = document.createElement('div');
+        div.className = 'msg veemon typing';
+        div.innerHTML = '<span></span><span></span><span></span>';
+        chatbox.appendChild(div);
+        chatbox.scrollTop = chatbox.scrollHeight;
+        return div;
+    }
+    
+    async function kirim() {
+        const input = document.getElementById('pesan');
+        const pesan = input.value.trim();
+        if (!pesan) return;
+        
+        tambahPesan(pesan, 'user');
+        input.value = '';
+        
+        // 1. Munculin "lagi ngetik"
+        const typingDiv = showTyping();
+        
+        // 2. Delay dikit biar berasa mikir
+        await new Promise(r => setTimeout(r, 1200));
+        
+        // 3. Fetch balasan asli
+        const res = await fetch('/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: pesan})
+        });
+        const data = await res.json();
+        
+        // 4. Hapus "lagi ngetik", ganti balasan asli
+        typingDiv.remove();
+        tambahPesan(data.reply, 'veemon');
+    }
+    </script>
+</body>
+</html>
