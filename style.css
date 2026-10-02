@@ -1,0 +1,345 @@
+/* =========================================================
+   STYLE GLOBAL & RESET
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f382c 0%, #175240 50%, #0a271f 100%);
+    color: #333333;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+/* =========================================================
+   NAVIGASI (NAVBAR)
+   ========================================================= */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: rgba(10, 39, 31, 0.95);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+.navbar button {
+    background: transparent;
+    border: 2px solid #d4af37; /* Sentuhan Emas */
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar button:hover {
+    background: #d4af37;
+    color: #0f382c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+}
+
+/* =========================================================
+   CONTAINER & LAYOUT
+   ========================================================= */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+.hero {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.hero .logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f1c40f;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.hero .tagline {
+    font-size: 16px;
+    color: #e0e0e0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   CARD DESIGN (TENTANG KAMI, KEUNGGULAN, VIDEO, GAME)
+   ========================================================= */
+.card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-top: 5px solid #d4af37;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card h3 {
+    color: #0f382c;
+    font-size: 22px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.card p {
+    color: #555555;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    color: #444444;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.card ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #175240;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* =========================================================
+   TOMBOL UTAMA (BUTTON START / CALL TO ACTION)
+   ========================================================= */
+.btn-start {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+    color: #0f382c;
+    border: none;
+    padding: 16px 25px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-start:hover {
+    background: linear-gradient(135deg, #f1c40f 0%, #d4af37 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+}
+
+/* =========================================================
+   SECTION VIDEO & GALERI
+   ========================================================= */
+.video-card {
+    text-align: center;
+}
+
+.video-header h2 {
+    color: #0f382c;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.video-box-wrapper {
+    width: 100%;
+    height: 350px;
+    background-color: #111111;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.question-bar {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border-left: 4px solid #175240;
+    text-align: left;
+    gap: 15px;
+}
+
+.bar-icon {
+    font-size: 24px;
+}
+
+.bar-text strong {
+    color: #0f382c;
+}
+
+.bar-text p {
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.btn-next {
+    background: #0f382c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-next:hover {
+    background: #175240;
+}
+
+/* =========================================================
+   SECTION INTERAKTIF / GAME EDUKASI
+   ========================================================= */
+.game-card {
+    text-align: center;
+}
+
+.img-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 15px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #d4af37;
+}
+
+.btn-speaker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(15, 56, 44, 0.8);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#game-instruction {
+    color: #0f382c;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.voice-section {
+    margin: 20px 0 10px 0;
+}
+
+.btn-mic {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.btn-mic:hover {
+    transform: scale(1.05);
+}
+
+#status {
+    font-size: 14px;
+    color: #777777;
+    margin-bottom: 10px;
+}
+
+#feedback {
+    font-size: 16px;
+    font-weight: 700;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (TAMPILAN HP / TABLET)
+   ========================================================= */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: row;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .navbar button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .card {
+        padding: 20px 18px;
+    }
+
+    .video-box-wrapper {
+        height: 220px;
+    }
+}
